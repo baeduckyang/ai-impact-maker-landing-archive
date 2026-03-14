@@ -1,0 +1,1686 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 임팩트 메이커 | 팀스파르타 전 직군 대규모 채용</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+<style>
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #1a1a1a;
+  background: #fff;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; border: none; font-family: inherit; }
+
+/* ===== VARIABLES ===== */
+:root {
+  --red: #FA0030;
+  --red-dark: #d90026;
+  --red-glow: rgba(250,0,48,0.15);
+  --dark: #0C0E13;
+  --dark-card: #16181f;
+  --dark-border: #2a2d35;
+  --light: #FFFFFF;
+  --gray-50: #f8f9fa;
+  --gray-100: #f1f3f5;
+  --gray-200: #e9ecef;
+  --gray-300: #dee2e6;
+  --gray-400: #ced4da;
+  --gray-500: #adb5bd;
+  --gray-600: #868e96;
+  --gray-700: #495057;
+  --gray-800: #343a40;
+  --gray-900: #212529;
+  --max-w: 1200px;
+  --section-py: 140px;
+  --section-py-m: 80px;
+  --nav-h: 64px;
+  --nav-h-shrink: 56px;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ===== SCROLL PROGRESS BAR ===== */
+.scroll-progress {
+  position: fixed; top: 0; left: 0; height: 3px; z-index: 200;
+  background: linear-gradient(90deg, var(--red), #ff4d6a, var(--red));
+  width: 0%;
+  transition: width 0.05s linear;
+  pointer-events: none;
+}
+
+/* ===== SCROLL-TO-TOP ===== */
+.scroll-top {
+  position: fixed; bottom: 32px; right: 32px; z-index: 150;
+  width: 48px; height: 48px; border-radius: 50%;
+  background: var(--dark); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  cursor: pointer; border: 1px solid var(--dark-border);
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s;
+  pointer-events: none;
+}
+.scroll-top.visible {
+  opacity: 1; transform: translateY(0);
+  pointer-events: auto;
+}
+.scroll-top:hover { background: var(--red); border-color: var(--red); }
+
+/* ===== NAVIGATION ===== */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(12,14,19,0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  transition: all 0.3s ease;
+  height: var(--nav-h);
+}
+.nav.shrink { height: var(--nav-h-shrink); }
+.nav-inner {
+  max-width: var(--max-w); margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 100%; padding: 0 32px;
+}
+.nav-logo { font-size: 18px; font-weight: 700; color: #fff; letter-spacing: -0.5px; }
+.nav-logo span { color: var(--red); }
+.nav-links { display: flex; gap: 32px; }
+.nav-links a {
+  color: rgba(255,255,255,0.5); font-size: 14px; font-weight: 500;
+  transition: color 0.2s; position: relative; padding-bottom: 2px;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+  height: 2px; background: var(--red);
+  transform: scaleX(0); transform-origin: center;
+  transition: transform 0.3s var(--ease-out);
+}
+.nav-links a:hover, .nav-links a.active { color: #fff; }
+.nav-links a.active::after { transform: scaleX(1); }
+.nav-cta {
+  background: var(--red); color: #fff;
+  padding: 10px 24px; border-radius: 8px;
+  font-size: 14px; font-weight: 600;
+  transition: all 0.2s;
+}
+.nav-cta:hover { background: var(--red-dark); transform: translateY(-1px); }
+
+/* ===== SECTIONS ===== */
+.section-dark { background: var(--dark); color: #fff; position: relative; }
+.section-dark::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat: repeat; background-size: 256px 256px;
+}
+.section-light { background: var(--light); color: var(--gray-900); position: relative; }
+.section-gray { background: var(--gray-50); color: var(--gray-900); position: relative; }
+.container {
+  max-width: var(--max-w); margin: 0 auto;
+  padding: var(--section-py) 32px;
+}
+.section-label {
+  font-size: 13px; font-weight: 700; color: var(--red);
+  text-transform: uppercase; letter-spacing: 3px;
+  margin-bottom: 16px;
+}
+.section-title {
+  font-size: 48px; font-weight: 800; line-height: 1.2;
+  letter-spacing: -1.5px; margin-bottom: 20px;
+}
+.section-desc {
+  font-size: 18px; line-height: 1.7; color: var(--gray-600);
+  max-width: 640px;
+}
+.section-dark .section-desc { color: rgba(255,255,255,0.5); }
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh; display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  text-align: center; padding: calc(var(--nav-h) + 40px) 32px 80px;
+  position: relative; overflow: hidden;
+}
+.hero::after { display: none; } /* hero는 자체 grain 사용 */
+/* Canvas Aurora */
+.aurora-canvas {
+  position: absolute; inset: 0; z-index: 0;
+  pointer-events: none;
+}
+/* 필름 그레인 텍스처 — 프리미엄 질감 */
+.grain-overlay {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat: repeat; background-size: 256px 256px;
+}
+/* 비네팅 — 중앙 집중 */
+.hero-vignette {
+  position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  background: radial-gradient(ellipse 75% 65% at 50% 65%, transparent 0%, rgba(12,14,19,0.25) 70%, rgba(12,14,19,0.7) 100%);
+}
+/* 상하 페이드 */
+.aurora-fade-top {
+  position: absolute; top: 0; left: 0; width: 100%; height: 40%;
+  background: linear-gradient(to bottom, #0C0E13 15%, rgba(12,14,19,0.6) 60%, transparent);
+  z-index: 3; pointer-events: none;
+}
+.aurora-fade-bottom {
+  position: absolute; bottom: 0; left: 0; width: 100%; height: 18%;
+  background: linear-gradient(to bottom, transparent, #0C0E13);
+  z-index: 3; pointer-events: none;
+}
+
+.hero-content { position: relative; z-index: 5; }
+
+.hero-chip {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(250,0,48,0.1); border: 1px solid rgba(250,0,48,0.2);
+  color: var(--red); padding: 8px 20px; border-radius: 100px;
+  font-size: 13px; font-weight: 600; letter-spacing: 1px;
+  margin-bottom: 32px;
+  animation: chipPulse 3s ease-in-out infinite;
+}
+@keyframes chipPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(250,0,48,0.15); }
+  50% { box-shadow: 0 0 0 12px rgba(250,0,48,0); }
+}
+.hero-chip-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--red);
+  animation: dotBlink 2s ease-in-out infinite;
+}
+@keyframes dotBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.hero h1 {
+  font-size: 76px; font-weight: 800; line-height: 1.1;
+  letter-spacing: -3px; margin-bottom: 24px; color: #fff;
+}
+.hero h1 em {
+  font-style: normal; color: var(--red);
+  position: relative;
+}
+.hero h1 em::after {
+  content: ''; position: absolute; bottom: 4px; left: 0; right: 0;
+  height: 6px; background: var(--red); opacity: 0.25; border-radius: 3px;
+}
+.hero .sub {
+  font-size: 18px; color: rgba(255,255,255,0.45);
+  margin-bottom: 8px; letter-spacing: -0.2px;
+}
+.hero .period {
+  font-size: 20px; font-weight: 600; color: rgba(255,255,255,0.75);
+  margin-bottom: 48px;
+}
+
+.hero-cards {
+  display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+  margin-bottom: 56px; max-width: 900px;
+}
+.hero-card {
+  padding: 20px 24px; border-radius: 14px;
+  display: flex; align-items: center; gap: 12px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(8px);
+  transition: all 0.3s var(--ease-out);
+  cursor: default;
+}
+.hero-card:hover {
+  border-color: rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.06);
+  transform: translateY(-2px);
+}
+.hero-card-icon { font-size: 20px; }
+.hero-card-name { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85); white-space: nowrap; }
+.hero-card-count { font-size: 13px; color: var(--red); font-weight: 700; }
+
+.hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--red); color: #fff;
+  padding: 16px 36px; border-radius: 12px;
+  font-size: 16px; font-weight: 700;
+  transition: all 0.25s var(--ease-out);
+  display: inline-flex; align-items: center; gap: 8px;
+  box-shadow: 0 2px 12px rgba(250,0,48,0.2);
+}
+.btn-primary:hover {
+  background: var(--red-dark); transform: translateY(-2px);
+  box-shadow: 0 8px 40px rgba(250,0,48,0.35);
+}
+.btn-secondary {
+  background: rgba(255,255,255,0.06); color: #fff;
+  padding: 16px 36px; border-radius: 12px;
+  font-size: 16px; font-weight: 600;
+  border: 1px solid rgba(255,255,255,0.12);
+  transition: all 0.25s var(--ease-out);
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-secondary:hover {
+  background: rgba(255,255,255,0.1); transform: translateY(-2px);
+}
+.btn-dark {
+  background: var(--red); color: #fff;
+  padding: 16px 36px; border-radius: 12px;
+  font-size: 16px; font-weight: 700;
+  transition: all 0.25s var(--ease-out);
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-dark:hover { background: var(--red-dark); transform: translateY(-2px); }
+.btn-outline-dark {
+  background: transparent; color: var(--gray-900);
+  padding: 16px 36px; border-radius: 12px;
+  font-size: 16px; font-weight: 600;
+  border: 1px solid var(--gray-200);
+  transition: all 0.25s var(--ease-out);
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-outline-dark:hover { border-color: var(--gray-400); }
+
+/* ===== BENEFITS — 아임웹 스타일 개별 혜택 카드 ===== */
+.benefits-header { text-align: center; margin-bottom: 80px; }
+.benefits-header .section-desc { margin: 0 auto; }
+
+.benefit-row {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 0; min-height: 400px;
+  border-top: 1px solid var(--gray-200);
+  position: relative;
+}
+.benefit-row:last-child { border-bottom: 1px solid var(--gray-200); }
+
+.benefit-text {
+  padding: 64px 56px 64px 0;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.benefit-number {
+  font-size: 80px; font-weight: 900; letter-spacing: -4px;
+  color: var(--gray-100); line-height: 1;
+  margin-bottom: 16px;
+  transition: color 0.4s var(--ease-out);
+}
+.benefit-row:hover .benefit-number { color: rgba(250,0,48,0.08); }
+.benefit-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(250,0,48,0.06); color: var(--red);
+  padding: 5px 14px; border-radius: 6px;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.5px;
+  margin-bottom: 16px; width: fit-content;
+}
+.benefit-title {
+  font-size: 32px; font-weight: 800; line-height: 1.3;
+  letter-spacing: -1px; margin-bottom: 16px;
+  color: var(--gray-900);
+}
+.benefit-desc {
+  font-size: 16px; line-height: 1.8; color: var(--gray-600);
+  max-width: 460px;
+}
+.benefit-visual {
+  display: flex; align-items: center; justify-content: center;
+  padding: 48px;
+  position: relative; overflow: hidden;
+}
+.benefit-visual-inner {
+  width: 100%; max-width: 400px;
+  border-radius: 20px; overflow: hidden;
+  position: relative;
+}
+
+/* Benefit 1 — 포폴 변환 플로우 */
+.portfolio-flow {
+  background: var(--gray-50); border: 1px solid var(--gray-200);
+  border-radius: 20px; padding: 40px 32px;
+}
+.flow-steps { display: flex; flex-direction: column; gap: 12px; }
+.flow-step {
+  padding: 18px 20px; border-radius: 12px;
+  font-size: 14px; font-weight: 600;
+  display: flex; align-items: center; gap: 10px;
+  transition: transform 0.3s var(--ease-out);
+}
+.flow-step:hover { transform: translateX(4px); }
+.flow-step.input {
+  background: #fff; border: 1px solid var(--gray-200); color: var(--gray-700);
+}
+.flow-step.process {
+  background: linear-gradient(135deg, var(--red), #ff4d6a); color: #fff;
+  box-shadow: 0 4px 20px rgba(250,0,48,0.2);
+}
+.flow-step.output {
+  background: var(--dark); color: #fff;
+}
+.flow-step-icon { font-size: 18px; flex-shrink: 0; }
+.flow-arrow { text-align: center; color: var(--gray-300); font-size: 16px; padding: 2px 0; }
+
+/* Benefit 2 — AI 이력서 대환영 */
+.ai-resume-card {
+  background: linear-gradient(145deg, #0C0E13, #1a1d28);
+  border-radius: 20px; padding: 40px 32px;
+  text-align: center; color: #fff;
+  position: relative; overflow: hidden;
+}
+.ai-resume-card::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(circle at 50% 0%, rgba(250,0,48,0.12), transparent 60%);
+}
+.ai-resume-emoji { font-size: 56px; margin-bottom: 20px; position: relative; }
+.ai-resume-text { font-size: 22px; font-weight: 700; line-height: 1.4; position: relative; }
+.ai-resume-text em { font-style: normal; color: var(--red); }
+.ai-resume-sub { font-size: 14px; color: rgba(255,255,255,0.4); margin-top: 12px; position: relative; }
+
+/* Benefit 3,4,5 — 면접 카드 */
+.interview-visual-card {
+  background: linear-gradient(145deg, var(--gray-50), #fff);
+  border: 1px solid var(--gray-200);
+  border-radius: 20px; padding: 40px 32px; text-align: center;
+  transition: transform 0.3s var(--ease-out);
+}
+.interview-visual-card:hover { transform: translateY(-4px); }
+.interview-visual-emoji { font-size: 48px; margin-bottom: 16px; }
+.interview-visual-title {
+  font-size: 20px; font-weight: 700; color: var(--gray-900);
+  margin-bottom: 8px; letter-spacing: -0.3px;
+}
+.interview-visual-desc { font-size: 14px; color: var(--gray-500); line-height: 1.6; }
+
+/* ===== CONCEPT ===== */
+.concept-cards {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 24px; margin-top: 48px;
+}
+.concept-card {
+  padding: 48px 40px; border-radius: 24px;
+  border: 1px solid var(--gray-200);
+  transition: all 0.4s var(--ease-out);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.02);
+}
+.concept-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.06);
+}
+.concept-card:first-child { background: linear-gradient(145deg, #fff5f5, #fff); }
+.concept-card:last-child { background: linear-gradient(145deg, #f0f4ff, #fff); }
+.concept-card .icon { font-size: 36px; margin-bottom: 20px; }
+.concept-card h3 { font-size: 24px; font-weight: 800; margin-bottom: 16px; letter-spacing: -0.5px; }
+.concept-card p { font-size: 16px; line-height: 1.7; color: var(--gray-600); }
+.concept-bottom {
+  margin-top: 48px; text-align: center;
+  padding: 48px; background: var(--gray-50);
+  border-radius: 20px; border: 1px solid var(--gray-200);
+}
+.concept-bottom p { font-size: 18px; line-height: 1.8; color: var(--gray-700); }
+.concept-bottom strong { color: var(--gray-900); font-weight: 700; }
+
+/* ===== STATS ===== */
+.stats-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 24px; margin-top: 48px;
+}
+.stat-card {
+  padding: 40px 28px; border-radius: 24px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  text-align: center;
+  transition: all 0.4s var(--ease-out);
+}
+.stat-card:hover {
+  transform: translateY(-6px);
+  background: rgba(255,255,255,0.05);
+  border-color: rgba(255,255,255,0.1);
+}
+.stat-number {
+  font-size: 48px; font-weight: 800; color: var(--red);
+  margin-bottom: 4px; letter-spacing: -1px;
+  font-variant-numeric: tabular-nums;
+}
+.stat-unit { font-size: 20px; font-weight: 600; color: rgba(255,255,255,0.6); margin-bottom: 16px; }
+.stat-desc { font-size: 14px; color: rgba(255,255,255,0.35); line-height: 1.5; }
+
+/* ===== STORIES ===== */
+.stories-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 24px; margin-top: 48px;
+}
+.story-card {
+  border-radius: 20px; overflow: hidden;
+  border: 1px solid var(--gray-200);
+  transition: all 0.4s var(--ease-out);
+  background: #fff;
+}
+.story-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 64px rgba(0,0,0,0.08);
+}
+.story-thumb {
+  height: 200px; position: relative;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 48px; overflow: hidden;
+}
+.story-card:nth-child(1) .story-thumb { background: linear-gradient(145deg, #fff0f3, #ffe0e6); }
+.story-card:nth-child(2) .story-thumb { background: linear-gradient(145deg, #e8f4fd, #dbeafe); }
+.story-card:nth-child(3) .story-thumb { background: linear-gradient(145deg, #ecfdf5, #d1fae5); }
+.story-card:nth-child(4) .story-thumb { background: linear-gradient(145deg, #fef3c7, #fde68a); }
+.story-card:nth-child(5) .story-thumb { background: linear-gradient(145deg, #f3e8ff, #e9d5ff); }
+.story-tag {
+  position: absolute; top: 16px; left: 16px;
+  background: rgba(0,0,0,0.6); color: #fff;
+  padding: 4px 12px; border-radius: 100px;
+  font-size: 12px; font-weight: 600;
+}
+.story-body { padding: 24px; }
+.story-body h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.3px; line-height: 1.4; }
+.story-body p { font-size: 14px; color: var(--gray-500); margin-bottom: 16px; }
+.story-link {
+  font-size: 14px; font-weight: 600; color: var(--red);
+  display: inline-flex; align-items: center; gap: 4px;
+  transition: gap 0.2s;
+}
+.story-card:hover .story-link { gap: 8px; }
+
+/* ===== WEBINAR ===== */
+.webinar-section { text-align: center; }
+.webinar-section .section-desc { margin: 0 auto 40px; }
+
+/* ===== POSITIONS ===== */
+.position-tabs-wrapper { margin-bottom: 32px; }
+.position-tabs { display: flex; gap: 8px; flex-wrap: wrap; }
+.position-tab {
+  padding: 10px 20px; border-radius: 100px;
+  font-size: 14px; font-weight: 600;
+  background: var(--gray-100); color: var(--gray-600);
+  transition: all 0.25s var(--ease-out); border: none;
+}
+.position-tab.active { background: var(--red); color: #fff; }
+.position-tab:hover:not(.active) { background: var(--gray-200); }
+.tab-count {
+  display: inline-block; background: rgba(0,0,0,0.06); color: inherit;
+  padding: 1px 8px; border-radius: 100px; font-size: 12px; margin-left: 4px; font-weight: 700;
+}
+.position-tab.active .tab-count { background: rgba(255,255,255,0.2); }
+.position-list { display: flex; flex-direction: column; gap: 8px; }
+.position-card {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 24px; border-radius: 14px;
+  border: 1px solid var(--gray-200);
+  transition: all 0.3s var(--ease-out);
+  border-left: 3px solid transparent;
+}
+.position-card:hover {
+  border-color: var(--gray-200); border-left-color: var(--red);
+  background: var(--gray-50);
+  transform: translateX(4px);
+}
+.position-info { flex: 1; }
+.position-org { font-size: 12px; font-weight: 700; color: var(--red); margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.5px; }
+.position-name { font-size: 17px; font-weight: 700; letter-spacing: -0.3px; margin-bottom: 2px; }
+.position-desc { font-size: 14px; color: var(--gray-500); }
+.position-meta { display: flex; align-items: center; gap: 16px; }
+.position-exp {
+  font-size: 13px; color: var(--gray-500);
+  background: var(--gray-50); padding: 5px 12px;
+  border-radius: 6px; font-weight: 500; white-space: nowrap;
+}
+.position-apply {
+  font-size: 14px; font-weight: 600; color: var(--red);
+  display: inline-flex; align-items: center; gap: 4px;
+  white-space: nowrap; transition: gap 0.2s;
+}
+.position-card:hover .position-apply { gap: 8px; }
+
+/* ===== COUNTDOWN ===== */
+.countdown-section { text-align: center; }
+.countdown-label { font-size: 16px; color: rgba(255,255,255,0.35); margin-bottom: 16px; font-weight: 500; }
+.countdown-timer {
+  display: flex; justify-content: center; align-items: baseline;
+  gap: 8px; margin-bottom: 48px;
+}
+.countdown-num {
+  font-size: 80px; font-weight: 800;
+  font-variant-numeric: tabular-nums; letter-spacing: -2px; color: #fff;
+}
+.countdown-num.accent { color: var(--red); }
+.countdown-sep { font-size: 48px; color: rgba(255,255,255,0.15); font-weight: 300; }
+.countdown-unit { display: flex; flex-direction: column; align-items: center; }
+.countdown-unit-label { font-size: 11px; color: rgba(255,255,255,0.25); font-weight: 600; margin-top: 4px; letter-spacing: 1px; }
+
+/* ===== FAQ ===== */
+.faq-list { max-width: 800px; margin: 48px auto 0; }
+.faq-item { border-bottom: 1px solid var(--gray-200); }
+.faq-question {
+  width: 100%; background: none; text-align: left;
+  padding: 24px 0; font-size: 17px; font-weight: 700;
+  color: var(--gray-900); display: flex;
+  align-items: center; justify-content: space-between;
+  letter-spacing: -0.3px; transition: color 0.2s;
+}
+.faq-question:hover { color: var(--red); }
+.faq-question::after {
+  content: '+'; font-size: 24px; font-weight: 300;
+  color: var(--gray-400);
+  transition: transform 0.4s var(--ease-out), color 0.2s;
+  flex-shrink: 0; margin-left: 16px;
+}
+.faq-item.open .faq-question::after { transform: rotate(45deg); color: var(--red); }
+.faq-answer {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.5s var(--ease-out);
+}
+.faq-answer-inner {
+  padding: 0 0 24px; font-size: 15px; line-height: 1.8; color: var(--gray-600);
+}
+
+/* ===== FOOTER ===== */
+.footer { border-top: 1px solid rgba(255,255,255,0.06); }
+.footer-inner {
+  max-width: var(--max-w); margin: 0 auto;
+  padding: 48px 32px;
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 40px;
+}
+.footer-info { font-size: 13px; color: rgba(255,255,255,0.3); line-height: 1.8; }
+.footer-info .logo { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 12px; }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a { font-size: 13px; color: rgba(255,255,255,0.4); transition: color 0.2s; }
+.footer-links a:hover { color: #fff; }
+
+/* ===== ANIMATIONS ===== */
+.fade-up {
+  opacity: 0; transform: translateY(40px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+}
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+/* Stagger delay for direct children */
+.stagger > *:nth-child(1) { transition-delay: 0ms; }
+.stagger > *:nth-child(2) { transition-delay: 80ms; }
+.stagger > *:nth-child(3) { transition-delay: 160ms; }
+.stagger > *:nth-child(4) { transition-delay: 240ms; }
+.stagger > *:nth-child(5) { transition-delay: 320ms; }
+.stagger > *:nth-child(6) { transition-delay: 400ms; }
+
+/* Section divider */
+.section-divider {
+  height: 1px; border: none; margin: 0;
+  background: linear-gradient(90deg, transparent, var(--gray-200) 20%, var(--gray-300) 50%, var(--gray-200) 80%, transparent);
+}
+.section-divider-dark {
+  height: 1px; border: none; margin: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06) 20%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.06) 80%, transparent);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1200px) {
+  :root { --section-py: 120px; }
+}
+@media (max-width: 810px) {
+  :root { --section-py: 80px; }
+  .nav-links { display: none; }
+  .hero h1 { font-size: 42px; letter-spacing: -1.5px; }
+  .section-title { font-size: 32px; letter-spacing: -1px; }
+  .hero-cards { gap: 8px; }
+  .hero-card { padding: 14px 16px; }
+  .benefit-row { grid-template-columns: 1fr; min-height: auto; }
+  .benefit-text { padding: 48px 0 24px; }
+  .benefit-visual { padding: 0 0 48px; }
+  .benefit-number { font-size: 56px; }
+  .benefit-title { font-size: 26px; }
+  .concept-cards { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .stories-grid { grid-template-columns: 1fr; }
+  .hero-buttons { flex-direction: column; align-items: center; }
+  .countdown-num { font-size: 48px; }
+  .countdown-sep { font-size: 32px; }
+  .footer-inner { flex-direction: column; }
+  .position-meta { flex-direction: column; align-items: flex-end; gap: 8px; }
+  .position-tabs { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 4px; }
+  .position-tab { white-space: nowrap; flex-shrink: 0; }
+}
+@media (max-width: 390px) {
+  .hero h1 { font-size: 34px; letter-spacing: -1px; }
+  .hero-card { padding: 10px 12px; }
+  .hero-card-name { font-size: 12px; }
+  .benefit-number { font-size: 48px; }
+  .stat-number { font-size: 36px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Scroll Progress -->
+<div class="scroll-progress" id="scrollProgress"></div>
+<button class="scroll-top" id="scrollTop" aria-label="맨 위로">&#8593;</button>
+
+<!-- NAV -->
+<nav class="nav" id="mainNav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">팀스파르타<span>.</span></a>
+    <div class="nav-links">
+      <a href="#benefits" data-section="benefits">혜택</a>
+      <a href="#concept" data-section="concept">AI 임팩트 메이커</a>
+      <a href="#stats" data-section="stats">Why Us</a>
+      <a href="#stories" data-section="stories">메이커들</a>
+      <a href="#positions" data-section="positions">포지션</a>
+      <a href="#faq" data-section="faq">FAQ</a>
+    </div>
+    <a href="#positions" class="nav-cta">지원하기</a>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="section-dark hero" id="hero">
+  <canvas class="aurora-canvas" id="aurora"></canvas>
+  <div class="grain-overlay"></div>
+  <div class="hero-vignette"></div>
+  <div class="aurora-fade-top"></div>
+  <div class="aurora-fade-bottom"></div>
+
+  <div class="hero-content">
+    <div class="hero-chip fade-up">
+      <span class="hero-chip-dot"></span>
+      AI IMPACT MAKER 2026
+    </div>
+
+    <h1 class="fade-up">AI로 <em>큰일</em> 낼 사람<br>찾습니다</h1>
+    <p class="sub fade-up">팀스파르타 <strong style="color:rgba(255,255,255,0.85);font-weight:700;">최초</strong> 전 직군 대규모 채용</p>
+    <p class="period fade-up">3.18 (화) — 3.31 (월)</p>
+
+    <div class="hero-cards fade-up stagger">
+      <div class="hero-card">
+        <span class="hero-card-icon">🎨</span>
+        <span class="hero-card-name">Product & Design</span>
+        <span class="hero-card-count">6</span>
+      </div>
+      <div class="hero-card">
+        <span class="hero-card-icon">💻</span>
+        <span class="hero-card-name">Engineering</span>
+        <span class="hero-card-count">3</span>
+      </div>
+      <div class="hero-card">
+        <span class="hero-card-icon">📈</span>
+        <span class="hero-card-name">Sales & Marketing</span>
+        <span class="hero-card-count">10</span>
+      </div>
+      <div class="hero-card">
+        <span class="hero-card-icon">🤖</span>
+        <span class="hero-card-name">AI & Data</span>
+        <span class="hero-card-count">3</span>
+      </div>
+      <div class="hero-card">
+        <span class="hero-card-icon">⚙️</span>
+        <span class="hero-card-name">Operations</span>
+        <span class="hero-card-count">7</span>
+      </div>
+      <div class="hero-card">
+        <span class="hero-card-icon">🏢</span>
+        <span class="hero-card-name">Business</span>
+        <span class="hero-card-count">4</span>
+      </div>
+    </div>
+
+    <div class="hero-buttons fade-up">
+      <a href="#positions" class="btn-primary">포지션 보기 →</a>
+      <a href="#benefits" class="btn-secondary">지원 혜택 확인 →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 지원 혜택 (아임웹 스타일 — 개별 혜택 카드) ===== -->
+<section class="section-light" id="benefits">
+  <div class="container">
+    <div class="benefits-header fade-up">
+      <div class="section-label">Benefits</div>
+      <div class="section-title">지원자에게 드리는<br>5가지 혜택</div>
+      <div class="section-desc">떨어뜨리기 위한 채용이 아닙니다. 함께 일할 사람을 찾는 과정이니까요.</div>
+    </div>
+
+    <!-- 혜택 1: AI 포트폴리오 변환 -->
+    <div class="benefit-row fade-up">
+      <div class="benefit-text">
+        <div class="benefit-number">01</div>
+        <div class="benefit-tag">서류 허들 낮추기</div>
+        <div class="benefit-title">AI 포트폴리오<br>변환 서비스</div>
+        <div class="benefit-desc">셀프 리뷰, 성과 보고서, 기존 포트폴리오 — 아무거나 넣으면 팀스파르타 양식으로 자동 변환합니다. 3월은 연봉 협상 직후, 당신의 성과 기록이 가장 생생할 때.</div>
+      </div>
+      <div class="benefit-visual">
+        <div class="portfolio-flow">
+          <div class="flow-steps">
+            <div class="flow-step input">
+              <span class="flow-step-icon">📄</span> 성과 리뷰 / PDF / 자연어 텍스트
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step process">
+              <span class="flow-step-icon">⚡</span> AI 포트폴리오 변환
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step output">
+              <span class="flow-step-icon">✅</span> 맞춤 포트폴리오 완성
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 혜택 2: AI 이력서 대환영 -->
+    <div class="benefit-row fade-up">
+      <div class="benefit-visual" style="order: -1;">
+        <div class="ai-resume-card">
+          <div class="ai-resume-emoji">🤖</div>
+          <div class="ai-resume-text">ChatGPT로 쓴 이력서?<br><em>환영합니다.</em></div>
+          <div class="ai-resume-sub">AI를 잘 쓰는 것도 실력이니까요.</div>
+        </div>
+      </div>
+      <div class="benefit-text">
+        <div class="benefit-number">02</div>
+        <div class="benefit-tag">서류 허들 낮추기</div>
+        <div class="benefit-title">AI 이력서,<br>대환영입니다.</div>
+        <div class="benefit-desc">ChatGPT로 쓴 이력서? Claude로 정리한 포트폴리오? 모두 환영합니다. AI 활용 능력 자체가 역량입니다. 중요한 건 당신의 성과와 경험이 잘 드러나는 것.</div>
+      </div>
+    </div>
+
+    <!-- 혜택 3: 면접 질문 사전 공개 -->
+    <div class="benefit-row fade-up">
+      <div class="benefit-text">
+        <div class="benefit-number">03</div>
+        <div class="benefit-tag">면접 허들 낮추기</div>
+        <div class="benefit-title">면접 질문<br>사전 공개</div>
+        <div class="benefit-desc">면접 당일 오전, 핵심 질문을 미리 보내드립니다. 생각을 정리할 시간은 드리되, 외워올 시간은 주지 않습니다. 진짜 사고력을 보고 싶으니까요.</div>
+      </div>
+      <div class="benefit-visual">
+        <div class="interview-visual-card">
+          <div class="interview-visual-emoji">📋</div>
+          <div class="interview-visual-title">면접 당일 오전 발송</div>
+          <div class="interview-visual-desc">핵심 질문 일부를 미리 안내합니다<br>준비할 시간, 충분히 드립니다</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 혜택 4: 풀고 싶은 문제 공개 -->
+    <div class="benefit-row fade-up">
+      <div class="benefit-visual" style="order: -1;">
+        <div class="interview-visual-card">
+          <div class="interview-visual-emoji">🎯</div>
+          <div class="interview-visual-title">이 팀의 과제를 미리 공유</div>
+          <div class="interview-visual-desc">면접은 일방적 검증이 아니라<br>문제를 함께 풀어보는 대화입니다</div>
+        </div>
+      </div>
+      <div class="benefit-text">
+        <div class="benefit-number">04</div>
+        <div class="benefit-tag">면접 허들 낮추기</div>
+        <div class="benefit-title">우리가 풀고 싶은<br>문제를 알려드립니다.</div>
+        <div class="benefit-desc">지금 이 팀이 직면한 과제를 미리 공유합니다. "여기 들어가면 뭘 하게 되지?"라는 불확실성을 면접 전에 해소하세요.</div>
+      </div>
+    </div>
+
+    <!-- 혜택 5: 기대 역할 공개 -->
+    <div class="benefit-row fade-up">
+      <div class="benefit-text">
+        <div class="benefit-number">05</div>
+        <div class="benefit-tag">면접 허들 낮추기</div>
+        <div class="benefit-title">입사 후 맡게 될 일,<br>미리 알려드립니다.</div>
+        <div class="benefit-desc">입사 후 가장 먼저 맡게 될 업무를 면접 전에 공유합니다. 우리는 떨어뜨리려고 면접하지 않습니다. 같이 일할 수 있는지, 대화하려고 만납니다.</div>
+      </div>
+      <div class="benefit-visual">
+        <div class="interview-visual-card">
+          <div class="interview-visual-emoji">🚀</div>
+          <div class="interview-visual-title">첫 업무를 미리 안내</div>
+          <div class="interview-visual-desc">Day 1부터 뭘 하게 되는지<br>입사 전에 알 수 있습니다</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 56px;" class="fade-up">
+      <a href="https://sparta-ai-portfolio-converter.vercel.app/" target="_blank" class="btn-dark">AI 포폴 변환하고 지원하기 →</a>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ===== AI 임팩트 메이커란 ===== -->
+<section class="section-gray" id="concept">
+  <div class="container">
+    <div class="fade-up" style="text-align: center;">
+      <div class="section-label">About</div>
+      <div class="section-title">AI 임팩트 메이커를<br>찾습니다</div>
+    </div>
+    <div class="concept-cards stagger">
+      <div class="concept-card fade-up">
+        <div class="icon">🌍</div>
+        <h3>AI로 세상을 바꾸는 제품을 만듭니다</h3>
+        <p>팀스파르타가 만드는 제품으로 세상의 모든 사람이 AI로 큰일 낼 수 있는 세상을 만듭니다. 우리의 제품이 곧 AI 임팩트입니다.</p>
+      </div>
+      <div class="concept-card fade-up">
+        <div class="icon">⚡</div>
+        <h3>팀스파르타 구성원들은 AI로 자신의 일을 혁신합니다</h3>
+        <p>마케터도, 운영기획도, 개발자도 — 팀스파르타에서는 누구나 AI로 비즈니스 임팩트를 만듭니다. 우리 자신이 곧 임팩트 메이커입니다.</p>
+      </div>
+    </div>
+    <div class="concept-bottom fade-up">
+      <p>우리가 찾는 것은 "AI에 관심 있는 사람"이 아닙니다.<br>
+      <strong>AI를 통해 비즈니스 임팩트를 만드는 것을 즐기고,<br>
+      더 큰 임팩트를 위해 AI를 적극적으로 공부하는 사람.</strong></p>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider-dark">
+
+<!-- ===== 숫자로 증명합니다 ===== -->
+<section class="section-dark" id="stats">
+  <div class="container">
+    <div class="fade-up" style="text-align: center;">
+      <div class="section-label">Why TeamSparta</div>
+      <div class="section-title">숫자로 증명합니다.</div>
+    </div>
+    <div class="stats-grid stagger">
+      <div class="stat-card fade-up">
+        <div class="stat-number" data-count="1314">0</div>
+        <div class="stat-unit">회</div>
+        <div class="stat-desc">2025년 한 해<br>제품 배포 횟수<br>(전년 대비 120% 성장)</div>
+      </div>
+      <div class="stat-card fade-up">
+        <div class="stat-number" data-count="252">0</div>
+        <div class="stat-unit">회</div>
+        <div class="stat-desc">Framer 기반<br>페이지 배포 및 실험</div>
+      </div>
+      <div class="stat-card fade-up">
+        <div class="stat-number">3h → 30m</div>
+        <div class="stat-unit">&nbsp;</div>
+        <div class="stat-desc">AI 도입으로 단축된<br>CX팀 주간 업무</div>
+      </div>
+      <div class="stat-card fade-up">
+        <div class="stat-number" data-count="79.4" data-decimal="true">0</div>
+        <div class="stat-unit">%</div>
+        <div class="stat-desc">AX 솔루션 도입 기업<br>평균 생산성 향상</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ===== AI로 큰일 낸 순간들 ===== -->
+<section class="section-light" id="stories">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-label">Impact Stories</div>
+      <div class="section-title">AI로 큰일 낸 순간들</div>
+      <div class="section-desc">팀스파르타 사람들이 AI로 만들어낸 진짜 임팩트 이야기.</div>
+    </div>
+    <div class="stories-grid stagger">
+      <div class="story-card fade-up">
+        <div class="story-thumb">🍽️ <span class="story-tag">문화 · 자동화</span></div>
+        <div class="story-body">
+          <h3>"점심시간에 자동화 해커톤을"</h3>
+          <p>팀원이 직접 AI로 업무를 바꾼 이야기</p>
+          <a href="https://blog.career.spartaclub.kr/lunchtimehackathon" class="story-link" target="_blank">읽어보기 →</a>
+        </div>
+      </div>
+      <div class="story-card fade-up">
+        <div class="story-thumb">🤖 <span class="story-tag">운영 · 자동화</span></div>
+        <div class="story-body">
+          <h3>"주 3시간이 30분이 됐습니다"</h3>
+          <p>CX팀이 AI로 업무를 혁신한 이야기</p>
+          <a href="https://blog.career.spartaclub.kr/CX-AI" class="story-link" target="_blank">읽어보기 →</a>
+        </div>
+      </div>
+      <div class="story-card fade-up">
+        <div class="story-thumb">🚀 <span class="story-tag">제품 · 스피드</span></div>
+        <div class="story-body">
+          <h3>"연 1,314회 배포, AI가 없었다면?"</h3>
+          <p>제품실이 AI로 속도를 낸 이야기</p>
+          <a href="https://blog.career.spartaclub.kr/pm-ax" class="story-link" target="_blank">읽어보기 →</a>
+        </div>
+      </div>
+      <div class="story-card fade-up">
+        <div class="story-thumb">💼 <span class="story-tag">AX · 기업변화</span></div>
+        <div class="story-body">
+          <h3>"79.4% 생산성 향상"</h3>
+          <p>AX팀이 AI로 기업을 바꾼 이야기</p>
+          <a href="https://blog.career.spartaclub.kr/b2b-ae-interview" class="story-link" target="_blank">읽어보기 →</a>
+        </div>
+      </div>
+      <div class="story-card fade-up">
+        <div class="story-thumb">🛠️ <span class="story-tag">채용 · 자동화</span></div>
+        <div class="story-body">
+          <h3>"비개발자가 3명 몫의 일을 혼자 하는 법"</h3>
+          <p>Claude Code 활용기</p>
+          <a href="https://blog.career.spartaclub.kr/99832" class="story-link" target="_blank">읽어보기 →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider-dark">
+
+<!-- ===== 웨비나 ===== -->
+<section class="section-dark" id="webinar">
+  <div class="container webinar-section">
+    <div class="fade-up">
+      <div style="font-size: 48px; margin-bottom: 24px;">🎙️</div>
+      <div class="section-title">AI 임팩트 메이커들이<br>직접 말합니다.</div>
+      <div class="section-desc">
+        팀스파르타 구성원들이 현업에서 AI를 어떻게 활용하고<br>
+        어떤 임팩트를 만들었는지 — 직접 들어보세요.
+      </div>
+      <p style="color: rgba(255,255,255,0.3); font-size: 14px; margin-bottom: 32px;">일정 확정 시 안내드립니다.</p>
+      <a href="#" class="btn-secondary">웨비나 사전 신청 →</a>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ===== 포지션 전체 ===== -->
+<section class="section-gray" id="positions">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-label">Open Positions</div>
+      <div class="section-title">AI 임팩트 메이커를 모십니다.</div>
+      <div class="section-desc" style="margin-bottom: 40px;">
+        직무는 달라도, 방향은 같습니다. AI로 비즈니스 임팩트를 만들고 싶은 사람이라면 어떤 직군이든 여기 자리가 있습니다.
+      </div>
+    </div>
+    <div class="position-tabs-wrapper">
+      <div class="position-tabs fade-up">
+        <button class="position-tab active" data-filter="all">전체 <span class="tab-count">31</span></button>
+        <button class="position-tab" data-filter="제품실">제품실 <span class="tab-count">6</span></button>
+        <button class="position-tab" data-filter="AX사업본부">AX사업본부 <span class="tab-count">6</span></button>
+        <button class="position-tab" data-filter="그로스실">그로스실 <span class="tab-count">7</span></button>
+        <button class="position-tab" data-filter="교육운영">교육·운영 <span class="tab-count">7</span></button>
+        <button class="position-tab" data-filter="기획경영">기획·경영 <span class="tab-count">5</span></button>
+      </div>
+    </div>
+    <div class="position-list fade-up">
+      <!-- 제품실 -->
+      <div class="position-card" data-org="제품실">
+        <div class="position-info">
+          <div class="position-org">제품실</div>
+          <div class="position-name">PM팀 팀장</div>
+          <div class="position-desc">제품조직의 PM 역량 고도화를 이끌 시니어 리더</div>
+        </div>
+        <div class="position-meta">
+          <span class="position-exp">7~10년</span>
+          <a href="#" class="position-apply">지원하기 →</a>
+        </div>
+      </div>
+      <div class="position-card" data-org="제품실">
+        <div class="position-info">
+          <div class="position-org">제품실</div>
+          <div class="position-name">Product Manager</div>
+          <div class="position-desc">코어테크 스쿼드 프로덕트 매니저</div>
+        </div>
+        <div class="position-meta">
+          <span class="position-exp">2~5년</span>
+          <a href="#" class="position-apply">지원하기 →</a>
+        </div>
+      </div>
+      <div class="position-card" data-org="제품실">
+        <div class="position-info">
+          <div class="position-org">제품실</div>
+          <div class="position-name">Backend Engineer</div>
+          <div class="position-desc">커리어 스쿼드 백엔드 엔지니어</div>
+        </div>
+        <div class="position-meta">
+          <span class="position-exp">0~1년</span>
+          <a href="#" class="position-apply">지원하기 →</a>
+        </div>
+      </div>
+      <div class="position-card" data-org="제품실">
+        <div class="position-info">
+          <div class="position-org">제품실</div>
+          <div class="position-name">Software Engineer</div>
+          <div class="position-desc">코어테크 풀스택 엔지니어</div>
+        </div>
+        <div class="position-meta">
+          <span class="position-exp">0~1년</span>
+          <a href="#" class="position-apply">지원하기 →</a>
+        </div>
+      </div>
+      <div class="position-card" data-org="제품실">
+        <div class="position-info">
+          <div class="position-org">제품실</div>
+          <div class="position-name">Product Designer</div>
+          <div class="position-desc">커리어 스쿼드 프로덕트 디자이너</div>
+        </div>
+        <div class="position-meta">
+          <span class="position-exp">1~5년</span>
+          <a href="#" class="position-apply">지원하기 →</a>
+        </div>
+      </div>
+      <div class="position-card" data-org="제품실">
+        <div class="position-info">
+          <div class="position-org">제품실</div>
+          <div class="position-name">Product Designer</div>
+          <div class="position-desc">KDT/KDC 프로덕트 디자이너</div>
+        </div>
+        <div class="position-meta">
+          <span class="position-exp">1~5년</span>
+          <a href="#" class="position-apply">지원하기 →</a>
+        </div>
+      </div>
+      <!-- AX사업본부 -->
+      <div class="position-card" data-org="AX사업본부">
+        <div class="position-info">
+          <div class="position-org">AX사업본부</div>
+          <div class="position-name">Senior Account Executive</div>
+          <div class="position-desc">AX교육 컨설팅파트 시니어 영업 리더</div>
+        </div>
+        <div class="position-meta">
+          <span class="position-exp">8~12년</span>
+          <a href="#" class="position-apply">지원하기 →</a>
+        </div>
+      </div>
+      <div class="position-card" data-org="AX사업본부">
+        <div class="position-info">
+          <div class="position-org">AX사업본부</div>
+          <div class="position-name">Account Executive</div>
+          <div class="position-desc">B2B AI 교육 세일즈</div>
+        </div>
+        <div class="position-meta">
+          <span class="position-exp">0~3년</span>
+          <a href="#" class="position-apply">지원하기 →</a>
+        </div>
+      </div>
+      <div class="position-card" data-org="AX사업본부">
+        <div class="position-info">
+          <div class="position-org">AX사업본부</div>
+          <div class="position-name">AX Consultant</div>
+          <div class="position-desc">AI 전환 사업개발 컨설턴트</div>
+        </div>
+        <div class="position-meta">
+          <span class="position-exp">3~7년</span>
+          <a href="#" class="position-apply">지원하기 →</a>
+        </div>
+      </div>
+      <div class="position-card" data-org="AX사업본부">
+        <div class="position-info">
+          <div class="position-org">AX사업본부</div>
+          <div class="position-name">Growth Product Manager</div>
+          <div class="position-desc">AX 솔루션 그로스 PM</div>
+        </div>
+        <div class="position-meta">
+          <span class="position-exp">3~5년</span>
+          <a href="#" class="position-apply">지원하기 →</a>
+        </div>
+      </div>
+      <div class="position-card" data-org="AX사업본부">
+        <div class="position-info">
+          <div class="position-org">AX사업본부</div>
+          <div class="position-name">Project Manager</div>
+          <div class="position-desc">B2B AI 교육 프로젝트 매니저</div>
+        </div>
+        <div class="position-meta">
+          <span class="position-exp">0~3년</span>
+          <a href="#" class="position-apply">지원하기 →</a>
+        </div>
+      </div>
+      <div class="position-card" data-org="AX사업본부">
+        <div class="position-info">
+          <div class="position-org">AX사업본부</div>
+          <div class="position-name">Project Manager</div>
+          <div class="position-desc">B2B AI 교육 프로젝트 매니저</div>
+        </div>
+        <div class="position-meta">
+          <span class="position-exp">0~3년</span>
+          <a href="#" class="position-apply">지원하기 →</a>
+        </div>
+      </div>
+      <!-- 그로스실 -->
+      <div class="position-card" data-org="그로스실">
+        <div class="position-info">
+          <div class="position-org">그로스실</div>
+          <div class="position-name">CRM Marketer</div>
+          <div class="position-desc">브레이즈 기반 CRM 전략 및 운영</div>
+        </div>
+        <div class="position-meta">
+          <span class="position-exp">3~7년</span>
+          <a href="#" class="position-apply">지원하기 →</a>
+        </div>
+      </div>
+      <div class="position-card" data-org="그로스실">
+        <div class="position-info">
+          <div class="position-org">그로스실</div>
+          <div class="position-name">Growth Marketer</div>
+          <div class="position-desc">AI캠퍼스 수강생 모집 마케팅</div>
+        </div>
+        <div class="position-meta">
+          <span class="position-exp">1~5년</span>
+          <a href="#" class="position-apply">지원하기 →</a>
+        </div>
+      </div>
+      <div class="position-card" data-org="그로스실">
+        <div class="position-info">
+          <div class="position-org">그로스실</div>
+          <div class="position-name">Growth Marketer</div>
+          <div class="position-desc">KDT 수강생 모집 마케팅</div>
+        </div>
+        <div class="position-meta">
+          <span class="position-exp">2~5년</span>
+          <a href="#" class="position-apply">지원하기 →</a>
+        </div>
+      </div>
+      <div class="position-card" data-org="그로스실">
+        <div class="position-info">
+          <div class="position-org">그로스실</div>
+          <div class="position-name">Growth Marketer</div>
+          <div class="position-desc">KDC 수강생 모집 마케팅</div>
+        </div>
+        <div class="position-meta">
+          <span class="position-exp">1~3년</span>
+          <a href="#" class="position-apply">지원하기 →</a>
+        </div>
+      </div>
+      <div class="position-card" data-org="그로스실">
+        <div class="position-info">
+          <div class="position-org">그로스실</div>
+          <div class="position-name">Growth Manager</div>
+          <div class="position-desc">KDT 온보딩 세일즈</div>
+        </div>
+        <div class="position-meta">
+          <span class="position-exp">0~3년</span>
+          <a href="#" class="position-apply">지원하기 →</a>
+        </div>
+      </div>
+      <div class="position-card" data-org="그로스실">
+        <div class="position-info">
+          <div class="position-org">그로스실</div>
+          <div class="position-name">Sales Developer</div>
+          <div class="position-desc">오프라인 세일즈 개발</div>
+        </div>
+        <div class="position-meta">
+          <span class="position-exp">1~5년</span>
+          <a href="#" class="position-apply">지원하기 →</a>
+        </div>
+      </div>
+      <div class="position-card" data-org="그로스실">
+        <div class="position-info">
+          <div class="position-org">그로스실</div>
+          <div class="position-name">Marketer</div>
+          <div class="position-desc">AX교육 B2B 마케팅</div>
+        </div>
+        <div class="position-meta">
+          <span class="position-exp">0~3년</span>
+          <a href="#" class="position-apply">지원하기 →</a>
+        </div>
+      </div>
+      <!-- 교육운영 -->
+      <div class="position-card" data-org="교육운영">
+        <div class="position-info">
+          <div class="position-org">교육운영실</div>
+          <div class="position-name">운영기획 매니저</div>
+          <div class="position-desc">KDT 교육과정 운영 및 기획 (3개 포지션)</div>
+        </div>
+        <div class="position-meta">
+          <span class="position-exp">0~3년</span>
+          <a href="#" class="position-apply">지원하기 →</a>
+        </div>
+      </div>
+      <div class="position-card" data-org="교육운영">
+        <div class="position-info">
+          <div class="position-org">교육운영실</div>
+          <div class="position-name">데이터파트 파트장</div>
+          <div class="position-desc">KDT 교육운영 데이터파트 리더</div>
+        </div>
+        <div class="position-meta">
+          <span class="position-exp">3~7년</span>
+          <a href="#" class="position-apply">지원하기 →</a>
+        </div>
+      </div>
+      <div class="position-card" data-org="교육운영">
+        <div class="position-info">
+          <div class="position-org">교육운영실</div>
+          <div class="position-name">커리큘럼기획 매니저</div>
+          <div class="position-desc">AI 커리큘럼 설계 및 구축</div>
+        </div>
+        <div class="position-meta">
+          <span class="position-exp">3~5년</span>
+          <a href="#" class="position-apply">지원하기 →</a>
+        </div>
+      </div>
+      <div class="position-card" data-org="교육운영">
+        <div class="position-info">
+          <div class="position-org">교육운영실</div>
+          <div class="position-name">Tutor Relations팀 팀장</div>
+          <div class="position-desc">튜터 관리 및 파트너십 리더</div>
+        </div>
+        <div class="position-meta">
+          <span class="position-exp">5~10년</span>
+          <a href="#" class="position-apply">지원하기 →</a>
+        </div>
+      </div>
+      <!-- 기획경영 -->
+      <div class="position-card" data-org="기획경영">
+        <div class="position-info">
+          <div class="position-org">기획실</div>
+          <div class="position-name">사업기획 매니저</div>
+          <div class="position-desc">KDT/KDC 사업 수주 및 관리</div>
+        </div>
+        <div class="position-meta">
+          <span class="position-exp">3~5년</span>
+          <a href="#" class="position-apply">지원하기 →</a>
+        </div>
+      </div>
+      <div class="position-card" data-org="기획경영">
+        <div class="position-info">
+          <div class="position-org">기획실</div>
+          <div class="position-name">Career Manager</div>
+          <div class="position-desc">미래내일일경험 사업 운영</div>
+        </div>
+        <div class="position-meta">
+          <span class="position-exp">0~2년</span>
+          <a href="#" class="position-apply">지원하기 →</a>
+        </div>
+      </div>
+      <div class="position-card" data-org="기획경영">
+        <div class="position-info">
+          <div class="position-org">경영관리본부</div>
+          <div class="position-name">Compliance Manager</div>
+          <div class="position-desc">전사 컴플라이언스 업무</div>
+        </div>
+        <div class="position-meta">
+          <span class="position-exp">0~5년</span>
+          <a href="#" class="position-apply">지원하기 →</a>
+        </div>
+      </div>
+      <div class="position-card" data-org="기획경영">
+        <div class="position-info">
+          <div class="position-org">경영관리본부</div>
+          <div class="position-name">GA Manager</div>
+          <div class="position-desc">총무 업무 전반</div>
+        </div>
+        <div class="position-meta">
+          <span class="position-exp">1~4년</span>
+          <a href="#" class="position-apply">지원하기 →</a>
+        </div>
+      </div>
+      <div class="position-card" data-org="기획경영">
+        <div class="position-info">
+          <div class="position-org">CEO조직</div>
+          <div class="position-name">게임 기획자</div>
+          <div class="position-desc">게임팀 기획</div>
+        </div>
+        <div class="position-meta">
+          <span class="position-exp">0~2년</span>
+          <a href="#" class="position-apply">지원하기 →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider-dark">
+
+<!-- ===== COUNTDOWN ===== -->
+<section class="section-dark" id="cta">
+  <div class="container countdown-section">
+    <div class="fade-up">
+      <div class="countdown-label">지원 마감까지</div>
+      <div class="countdown-timer" id="countdown">
+        <div class="countdown-unit">
+          <span class="countdown-num accent" id="cd-days">17</span>
+          <span class="countdown-unit-label">DAYS</span>
+        </div>
+        <span class="countdown-sep">:</span>
+        <div class="countdown-unit">
+          <span class="countdown-num" id="cd-hours">08</span>
+          <span class="countdown-unit-label">HRS</span>
+        </div>
+        <span class="countdown-sep">:</span>
+        <div class="countdown-unit">
+          <span class="countdown-num" id="cd-mins">24</span>
+          <span class="countdown-unit-label">MIN</span>
+        </div>
+        <span class="countdown-sep">:</span>
+        <div class="countdown-unit">
+          <span class="countdown-num" id="cd-secs">57</span>
+          <span class="countdown-unit-label">SEC</span>
+        </div>
+      </div>
+      <div class="section-title" style="margin-bottom: 12px;">AI로 <span style="color: var(--red);">큰일</span> 낼 준비가 됐다면,<br>지금 지원하세요</div>
+      <p style="color: rgba(255,255,255,0.35); margin-bottom: 40px; font-size: 16px;">
+        3.18 (화) — 3.31 (월) 지원 접수&nbsp;&nbsp;|&nbsp;&nbsp;인터뷰는 4.17 (금)까지 순차 진행
+      </p>
+      <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+        <a href="#positions" class="btn-primary">지원하기 →</a>
+        <a href="https://sparta-ai-portfolio-converter.vercel.app/" target="_blank" class="btn-secondary">AI 포폴 변환하기 →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ===== FAQ ===== -->
+<section class="section-light" id="faq">
+  <div class="container">
+    <div class="fade-up" style="text-align: center;">
+      <div class="section-label">FAQ</div>
+      <div class="section-title">자주 묻는 질문</div>
+    </div>
+    <div class="faq-list fade-up">
+      <div class="faq-item">
+        <button class="faq-question">AI로 작성한 이력서도 정말 괜찮은가요?</button>
+        <div class="faq-answer"><div class="faq-answer-inner">네, 환영합니다. 팀스파르타는 AI 활용 능력 자체를 역량으로 봅니다. 중요한 것은 AI로 쓰든 직접 쓰든, 당신의 성과와 경험이 잘 드러나는 것입니다. 다만 허위 내용은 면접에서 확인되니, 진짜 경험을 잘 정리해주세요.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">AI 포트폴리오 변환 서비스는 어떻게 이용하나요?</button>
+        <div class="faq-answer"><div class="faq-answer-inner">셀프 리뷰, 성과 보고서, 기존 포트폴리오 등을 PDF 또는 텍스트로 업로드하면 팀스파르타가 선호하는 양식으로 AI가 자동 변환합니다. 변환 후 내용을 직접 검토·수정한 뒤 지원하실 수 있습니다.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">면접 질문을 정말 미리 알려주나요?</button>
+        <div class="faq-answer"><div class="faq-answer-inner">네. 면접 당일 오전에 핵심 질문 일부와 함께 해당 포지션에서 풀고 싶은 문제, 기대하는 역할을 안내드립니다. 우리는 후보자를 떨어뜨리기 위한 면접이 아니라, 함께 일할 수 있는지 대화하기 위한 면접을 지향합니다.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">전 직군 채용이면 어떤 직무에 지원할 수 있나요?</button>
+        <div class="faq-answer"><div class="faq-answer-inner">제품실(PM, 개발, 디자인), AX사업본부(AE, PM, 컨설턴트), 그로스실(마케터, 세일즈), 교육운영실, 기획실, 경영관리본부 등 현재 31개 포지션이 열려 있습니다. 포지션 섹션에서 직무별로 확인하실 수 있습니다.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">이전에 지원했었는데 다시 지원할 수 있나요?</button>
+        <div class="faq-answer"><div class="faq-answer-inner">네. 이전 지원 이후 새로운 경험이나 성장이 있다면 언제든 다시 지원해주세요.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="section-dark footer">
+  <div class="footer-inner">
+    <div class="footer-info">
+      <div class="logo">팀스파르타<span style="color: var(--red);">.</span></div>
+      서울특별시 강남구 테헤란로 44길 8, 12층<br>
+      대표이사: 이범규<br>
+      채용 문의: recruit@teamsparta.co<br><br>
+      © 2026 TeamSparta. All rights reserved.
+    </div>
+    <div class="footer-links">
+      <a href="https://spartacodingclub.kr" target="_blank">팀스파르타</a>
+      <a href="https://blog.career.spartaclub.kr" target="_blank">채용 블로그</a>
+      <a href="#concept">팀 문화</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ===== Premium Aurora Wave — Canvas 기반 =====
+(() => {
+  const canvas = document.getElementById('aurora');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W, H, time = 0;
+  const isMobile = window.innerWidth <= 810;
+  const dpr = Math.min(window.devicePixelRatio || 1, isMobile ? 1.5 : 2);
+
+  let resizeTimer;
+  function resize() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      W = window.innerWidth;
+      H = window.innerHeight;
+      canvas.width = W * dpr;
+      canvas.height = H * dpr;
+      canvas.style.width = W + 'px';
+      canvas.style.height = H + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }, 200);
+  }
+  // 초기화는 즉시 실행
+  W = window.innerWidth; H = window.innerHeight;
+  canvas.width = W * dpr; canvas.height = H * dpr;
+  canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  window.addEventListener('resize', resize);
+
+  function noise(x, y) {
+    const n = Math.sin(x * 12.9898 + y * 78.233) * 43758.5453;
+    return n - Math.floor(n);
+  }
+  function smoothNoise(x, y) {
+    const ix = Math.floor(x), iy = Math.floor(y);
+    const fx = x - ix, fy = y - iy;
+    const sx = fx * fx * (3 - 2 * fx);
+    const sy = fy * fy * (3 - 2 * fy);
+    const a = noise(ix, iy), b = noise(ix + 1, iy);
+    const c = noise(ix, iy + 1), d = noise(ix + 1, iy + 1);
+    return a + (b - a) * sx + (c - a) * sy + (a - b - c + d) * sx * sy;
+  }
+  function fbm(x, y) {
+    let val = 0, amp = 0.5;
+    for (let i = 0; i < 4; i++) {
+      val += amp * smoothNoise(x, y);
+      x *= 2.0; y *= 2.0; amp *= 0.5;
+    }
+    return val;
+  }
+
+  // blur 제거 → 두께(thick)와 opacity로 부드러움 표현 (성능 대폭 향상)
+  const allRibbons = [
+    { baseY: 0.58, amp: 40, speed: 0.35, color: [250,0,48], opacity: 0.06, thick: 280 },  // 넓은 레드 글로우
+    { baseY: 0.52, amp: 32, speed: 0.25, color: [139,92,246], opacity: 0.05, thick: 220 }, // 퍼플
+    { baseY: 0.56, amp: 28, speed: 0.40, color: [59,130,246], opacity: 0.04, thick: 200 }, // 블루
+    { baseY: 0.50, amp: 45, speed: 0.30, color: [250,0,48], opacity: 0.10, thick: 160 },   // 메인 레드
+    { baseY: 0.54, amp: 38, speed: 0.38, color: [255,77,106], opacity: 0.08, thick: 120 }, // 핑크
+    { baseY: 0.48, amp: 30, speed: 0.50, color: [250,0,48], opacity: 0.18, thick: 60 },    // 선명 레드
+    { baseY: 0.52, amp: 22, speed: 0.55, color: [255,120,140], opacity: 0.10, thick: 35 }, // 하이라이트
+  ];
+  const ribbons = isMobile ? allRibbons.slice(3) : allRibbons;
+  const segments = isMobile ? 50 : 80;
+
+  function drawRibbon(ribbon, t) {
+    const { baseY, amp, speed, color, opacity, thick } = ribbon;
+    const y0 = H * baseY;
+    const segW = W / segments;
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(-20, H);
+    for (let i = 0; i <= segments; i++) {
+      const x = i * segW;
+      const nx = x / W * 3.0;
+      const waveOffset = fbm(nx + t * speed, t * speed * 0.3 + ribbon.baseY * 10) - 0.5;
+      const slowWave = Math.sin(x / W * Math.PI * 2.5 + t * speed * 2) * 0.3;
+      const y = y0 + (waveOffset + slowWave) * amp * 2;
+      if (i === 0) ctx.lineTo(-20, y);
+      ctx.lineTo(x, y);
+    }
+    for (let i = segments; i >= 0; i--) {
+      const x = i * segW;
+      const nx = x / W * 3.0;
+      const waveOffset = fbm(nx + t * speed + 5.7, t * speed * 0.3 + ribbon.baseY * 10 + 3.3) - 0.5;
+      const slowWave = Math.sin(x / W * Math.PI * 2.5 + t * speed * 2 + 1.5) * 0.3;
+      const y = y0 + thick + (waveOffset + slowWave) * amp * 2;
+      ctx.lineTo(x, y);
+    }
+    ctx.lineTo(-20, H);
+    ctx.closePath();
+    // 수평 그라디언트 — 양쪽 끝 페이드
+    const grad = ctx.createLinearGradient(0, 0, W, 0);
+    const [r, g, b] = color;
+    grad.addColorStop(0, `rgba(${r},${g},${b},0)`);
+    grad.addColorStop(0.12, `rgba(${r},${g},${b},${opacity * 0.5})`);
+    grad.addColorStop(0.3, `rgba(${r},${g},${b},${opacity})`);
+    grad.addColorStop(0.5, `rgba(${r},${g},${b},${opacity})`);
+    grad.addColorStop(0.7, `rgba(${r},${g},${b},${opacity})`);
+    grad.addColorStop(0.88, `rgba(${r},${g},${b},${opacity * 0.5})`);
+    grad.addColorStop(1, `rgba(${r},${g},${b},0)`);
+    ctx.fillStyle = grad;
+    ctx.fill();
+    ctx.restore();
+  }
+
+  const sparkleCount = isMobile ? 15 : 30;
+  const sparkles = Array.from({ length: sparkleCount }, () => ({
+    x: Math.random(), y: 0.4 + Math.random() * 0.3,
+    size: 0.5 + Math.random() * 1.5,
+    speed: 0.2 + Math.random() * 0.5,
+    phase: Math.random() * Math.PI * 2,
+    opacity: 0.1 + Math.random() * 0.2,
+  }));
+
+  function drawSparkles(t) {
+    sparkles.forEach(s => {
+      const x = s.x * W;
+      const y = s.y * H + Math.sin(t * s.speed + s.phase) * 20;
+      const alpha = s.opacity * (0.3 + 0.7 * Math.sin(t * s.speed * 1.5 + s.phase));
+      if (alpha < 0.02) return;
+      ctx.save();
+      ctx.globalAlpha = alpha;
+      ctx.fillStyle = '#fff';
+      ctx.shadowColor = 'rgba(250,0,48,0.4)';
+      ctx.shadowBlur = 8;
+      ctx.beginPath();
+      ctx.arc(x, y, s.size, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    });
+  }
+
+  function draw() {
+    time += 0.012;
+    ctx.clearRect(0, 0, W, H);
+    ctx.globalCompositeOperation = 'lighter';
+    ribbons.forEach(ribbon => drawRibbon(ribbon, time));
+    drawSparkles(time);
+    ctx.globalCompositeOperation = 'source-over';
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// ===== Scroll Progress =====
+const scrollProgress = document.getElementById('scrollProgress');
+const scrollTopBtn = document.getElementById('scrollTop');
+const mainNav = document.getElementById('mainNav');
+const heroSection = document.getElementById('hero');
+const navLinks = document.querySelectorAll('.nav-links a[data-section]');
+const sectionMap = [];
+navLinks.forEach(link => {
+  const s = document.getElementById(link.dataset.section);
+  if (s) sectionMap.push({ el: s, link });
+});
+
+let ticking = false;
+window.addEventListener('scroll', () => {
+  if (!ticking) {
+    requestAnimationFrame(() => {
+      const scrollY = window.scrollY;
+      const docH = document.documentElement.scrollHeight - window.innerHeight;
+      // Progress bar
+      scrollProgress.style.width = (docH > 0 ? (scrollY / docH) * 100 : 0) + '%';
+      // Scroll-to-top
+      const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+      scrollTopBtn.classList.toggle('visible', scrollY > heroBottom);
+      // Nav shrink
+      mainNav.classList.toggle('shrink', scrollY > 100);
+      // Active nav
+      const checkY = scrollY + window.innerHeight / 3;
+      let active = null;
+      sectionMap.forEach(({ el, link }) => {
+        if (checkY >= el.offsetTop && checkY < el.offsetTop + el.offsetHeight) active = link;
+      });
+      navLinks.forEach(l => l.classList.remove('active'));
+      if (active) active.classList.add('active');
+      ticking = false;
+    });
+    ticking = true;
+  }
+}, { passive: true });
+
+scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+// ===== Scroll Animations =====
+const fadeObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      fadeObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-up').forEach(el => fadeObserver.observe(el));
+
+// ===== Countdown =====
+function updateCountdown() {
+  const deadline = new Date('2026-03-31T23:59:59+09:00');
+  const diff = deadline - new Date();
+  if (diff <= 0) return;
+  const d = Math.floor(diff / 86400000);
+  const h = Math.floor((diff % 86400000) / 3600000);
+  const m = Math.floor((diff % 3600000) / 60000);
+  const s = Math.floor((diff % 60000) / 1000);
+  document.getElementById('cd-days').textContent = d;
+  document.getElementById('cd-hours').textContent = String(h).padStart(2, '0');
+  document.getElementById('cd-mins').textContent = String(m).padStart(2, '0');
+  document.getElementById('cd-secs').textContent = String(s).padStart(2, '0');
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+// ===== Count-up (easeOutExpo) =====
+const countObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const el = e.target;
+      const target = parseFloat(el.dataset.count);
+      if (!target) return;
+      const isDecimal = el.dataset.decimal === 'true';
+      const duration = 2500;
+      const start = performance.now();
+      function animate(now) {
+        const p = Math.min((now - start) / duration, 1);
+        const eased = p === 1 ? 1 : 1 - Math.pow(2, -10 * p);
+        el.textContent = isDecimal ? (target * eased).toFixed(1) : Math.floor(target * eased).toLocaleString();
+        if (p < 1) requestAnimationFrame(animate);
+      }
+      requestAnimationFrame(animate);
+      countObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.stat-number[data-count]').forEach(el => countObserver.observe(el));
+
+// ===== Position tabs =====
+document.querySelectorAll('.position-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.position-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    const f = tab.dataset.filter;
+    document.querySelectorAll('.position-card').forEach(card => {
+      card.style.display = (f === 'all' || card.dataset.org === f) ? 'flex' : 'none';
+    });
+  });
+});
+
+// ===== FAQ =====
+document.querySelectorAll('.faq-question').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.parentElement;
+    const answer = item.querySelector('.faq-answer');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => {
+      i.classList.remove('open');
+      i.querySelector('.faq-answer').style.maxHeight = '0';
+    });
+    if (!isOpen) {
+      item.classList.add('open');
+      answer.style.maxHeight = answer.scrollHeight + 'px';
+    }
+  });
+});
+</script>
+</body>
+</html>
